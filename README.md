@@ -1,3 +1,1 @@
-A template for open-source Python software repositories
-
-Instructions for how to get started working with the code can be found in `CONTRIBUTING.md`.
+Learn how you can use Python and the Datawrapper API to create a limitless number of charts and maps
