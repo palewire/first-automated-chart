@@ -25,6 +25,12 @@ sphinx-rtd-theme = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
 tomli = "*"
+jupyterlab = "*"
+pandas = "*"
+altair = "*"
+datawrapper = "*"
+pyarrow = "*"
+geopandas = "*"
 
 [packages]
 exceptiongroup = "*"
