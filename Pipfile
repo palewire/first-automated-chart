@@ -25,15 +25,14 @@ sphinx-rtd-theme = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
 tomli = "*"
-jupyterlab = "*"
-pandas = "*"
-altair = "*"
-datawrapper = "*"
-pyarrow = "*"
-geopandas = "*"
 
 [packages]
 exceptiongroup = "*"
+datawrapper = {ref = "main", git = "https://github.com/palewire/Datawrapper.git"}
+jupyterlab = "*"
+pandas = "*"
+altair = "*"
+pyarrow = "*"
 
 [requires]
 python_version = "3.11"
