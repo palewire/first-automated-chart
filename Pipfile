@@ -25,6 +25,7 @@ sphinx-rtd-theme = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
 tomli = "*"
+sphinx-palewire-theme = "*"
 
 [packages]
 exceptiongroup = "*"

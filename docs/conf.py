@@ -1,22 +1,22 @@
 """Configuration file for the Sphinx documentation builder."""
-import os
-import sys
 from datetime import datetime
 
-# Insert the parent directory into the path
-sys.path.insert(0, os.path.abspath("../your_source_code"))
-
-project = "your-package-name"
+project = "First Automated Chart"
 year = datetime.now().year
 copyright = f"{year}"
-author = "your-name"
+author = "palewire"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-html_theme = "sphinx_rtd_theme"
-html_baseurl = "/docs/"
+html_theme = "palewire"
 pygments_style = "sphinx"
+
+html_sidebars: dict[Any, Any] = {}
+html_theme_options: dict[Any, Any] = {
+    "canonical_url": f"https://palewi.re/docs/first-automated-chart/",
+    "nosidebar": True,
+}
 
 autodoc_member_order = "bysource"
 autodoc_default_options = {
@@ -29,7 +29,6 @@ autodoc_default_options = {
 
 extensions = [
     "myst_parser",
-    "sphinx_click",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinxcontrib.mermaid",
