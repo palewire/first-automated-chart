@@ -1,12 +1,12 @@
 """Configuration file for the Sphinx documentation builder."""
 from datetime import datetime
+from typing import Any
 
 project = "First Automated Chart"
 year = datetime.now().year
 copyright = f"{year}"
 author = "palewire"
 
-templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 html_theme = "palewire"
