@@ -14,7 +14,7 @@ pygments_style = "sphinx"
 
 html_sidebars: dict[Any, Any] = {}
 html_theme_options: dict[Any, Any] = {
-    "canonical_url": f"https://palewi.re/docs/first-automated-chart/",
+    "canonical_url": "https://palewi.re/docs/first-automated-chart/",
     "nosidebar": True,
 }
 
