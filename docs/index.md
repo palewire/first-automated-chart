@@ -93,7 +93,7 @@ Once the program is installed, you can accept the installation wizard’s offer 
 
 That will open up a new window that looks something like this:
 
-![](_static/jupyter-desktop-launch.png)
+![](_static/jupyter-desktop-splash.png)
 
 Now click the "New notebook..." button to open the Python interface. It will open up the notebook with an empty cell, which is where you can write and run your code.
 
