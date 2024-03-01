@@ -4,7 +4,7 @@ from typing import Any
 
 project = "First Automated Chart"
 year = datetime.now().year
-copyright = f"{year}"
+copyright = f"{year} palewire"
 author = "palewire"
 
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
