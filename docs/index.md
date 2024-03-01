@@ -521,12 +521,12 @@ Pass that into the `create_chart` method of the `dw` object, just as we did befo
 ```python
 chart_config = dw.create_chart(
     title=f"Top 10 arrest charges in Baltimore last week",
-    chart_type="d3-bars",
-    data=top_charges_df,
+    chart_type="d3-bars",  # Here's that chart type
+    data=top_charges_df,  # Note that we're using the top charges DataFrame
     metadata={
         "visualize": {
-            "base-color": "#113421",
-            "thick": True,
+            "base-color": "#113421",  # Let's do a different color, for fun.
+            "thick": True,  # Make the bars thick, another Datawrapper config option
         },
         "describe": {
             "source-name": "OpenBaltimore",
