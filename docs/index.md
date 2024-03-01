@@ -13,6 +13,16 @@ Learn how you can use [Python](https://www.python.org/) and the [Datawrapper](ht
 
 If you've brave enough to use your computer’s command-line interface and give the Python programming language a try, you are qualified.
 
+## Table of contents
+
+* [Create a Datawrapper API key](#create-a-datawrapper-api-key)
+* [Getting started with Project Jupyter](#getting-started-with-project-jupyter)
+* [Connect to the Datawrapper API](#connect-to-the-datawrapper-api)
+* [Import data](#import-data)
+* [Create one chart](#create-one-chart)
+* [Create many charts](#create-many-charts)
+* [Create a scheduled chart](#create-a-chart-that-runs-on-a-schedule)
+
 ## Create a Datawrapper API key
 
 The first step is to create an API key that will allow you to create and edit charts using the Datawrapper API. This is a simple process that can be done in a few clicks. It all begins at the Datawrapper homepage at [datawrapper.de](https://www.datawrapper.de/).
@@ -170,7 +180,7 @@ df.head()
 
 You can see that the dataset features one row for each arrest, with columns for the date and time of the arrest, the district where it occurred and the charge that was filed.
 
-## Create a simple chart
+## Create one chart
 
 With these materials, any number of charts could be created. As a simple start, lets consider a chart that shows the number of arrests in Baltimore by year. We could look into the idea by creating a new column in the `df` object that contains the year of each arrest.
 
@@ -263,7 +273,7 @@ dw.display_chart(chart_id)
 <iframe title="Baltimore Arrests" aria-label="Column Chart" id="datawrapper-chart-JBvvU" src="https://datawrapper.dwcdn.net/JBvvU/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 
-## Set the chart description
+### Set the chart description
 
 A common practice in data journalism is to provide a citation of the sourcing of the data behind a chart. This is often done in the "Describe" tab of the Datawrapper interface. You can also do it using the `update_description` method of the `dw` object. Here we'll set the source name, source URL and byline.
 
@@ -291,7 +301,7 @@ dw.display_chart(chart_id)
 <iframe title="Baltimore Arrests" aria-label="Column Chart" id="datawrapper-chart-gX01J" src="https://datawrapper.dwcdn.net/gX01J/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 
-## Style the chart
+### Style the chart
 
 You can much more than that by using Python to configure the chart's metadata. There are literally dozens of different ways to customize axis labels, annotations, colors, legends, lines, bars and much more. A simple example is to change the color of the bars to match the IRE's accent color.
 
