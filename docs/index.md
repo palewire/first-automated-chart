@@ -97,7 +97,7 @@ That will open up a new window that looks something like this:
 
 Now click the "New notebook..." button to open the Python interface. It will open up the notebook with an empty cell, which is where you can write and run your code.
 
-![](_static/new-notebook.png)
+![](_static/jupyter-desktop-blank.png)
 
 The remainder of this class will assume you know how to enter code into cells and execute them in the notebook. If you don't, don't worry. It's very easy. You can quickly learn how by working through the introductory chapter of ["First Python Notebook"](https://palewi.re/docs/first-python-notebook/notebook.html), another open-source course available on this site.
 
