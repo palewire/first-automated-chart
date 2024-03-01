@@ -472,33 +472,51 @@ Not bad, right! You've just created a dozen charts in a few seconds. You could d
 
 ## Create a chart that runs on a schedule
 
+That's one example of how Python can supercharge your chart production. Here's another: You can write computer code that, when run on a schedule, will automatically create and publish a chart. This is a powerful way to publish charts whenever new data is available, or to create a series of charts that update on a regular basis.
+
+As an example, let's automate a chart that could be useful to a newsroom. We'll create a chart that shows the top 10 arrest charges in Baltimore over the last week which could, in theory, be published every Monday morning when new data is posted to the city's data portal.
+
+First we'll find the most recent date in our dataset, which will be the end of the week we want to chart. That can be done with pandas by calling the `max` method on the `ArrestDateTime` column.
+
+```python
+df.ArrestDateTime.dt.date.max()
+```
+
+Let's save that into a variable.
+
+```python
+end_date = df.ArrestDateTime.dt.date.max()
+```
+
+Then we'll use the `timedelta` class from the `datetime` module to find the date one week before. First we import the tool.
+
 ```python
 from datetime import timedelta
 ```
 
-```python
-df.ArrestDateTime.max()
-```
+Then we can subtract sevent days from the end date to find the start date.
 
 ```python
-seven_days_ago = df.ArrestDateTime.max() - timedelta(days=7)
+seven_days_ago = end_date - timedelta(days=7)
 ```
 
-```python
-last_week_df = df[df.ArrestDateTime >= seven_days_ago]
-```
+Filter the dataset to the last week by creating a new DataFrame that only contains the rows where the `ArrestDateTime` is after the start date.
 
 ```python
-last_week_df.ChargeDescription.value_counts()
+last_week_df = df[df.ArrestDateTime.dt.date > seven_days_ago]
 ```
+
+We can then count the number of arrests for each charge and save the top 10 as a new DataFrame.
 
 ```python
 top_charges_df = (
-    last_week_df.ChargeDescription.value_counts()
-        .reset_index()
-        .head(10)
+    last_week_df.ChargeDescription.value_counts()  # Count the number of arrests for each charge
+        .reset_index()  # Reset the index so that the charge becomes a column
+        .head(10)  # Save only the top 10
 )
 ```
+
+Pass that into the `create_chart` method of the `dw` object, just as we did before. This time we'll use the "d3-bars" chart type, which is a nice way to visualize a ranked list of items.
 
 ```python
 chart_config = dw.create_chart(
@@ -519,18 +537,31 @@ chart_config = dw.create_chart(
 )
 ```
 
+Just as we did with our first chart, we'll grab the identifier.
+
 ```python
 chart_id = chart_config["id"]
 ```
+
+Publish it.
 
 ```python
 dw.publish_chart(chart_id)
 ```
 
+And display it.
+
 ```python
 dw.display_chart(chart_id)
 ```
 
+<iframe title="Top 10 arrest charges in Baltimore last week" aria-label="Bar Chart" id="datawrapper-chart-viAN9" src="https://datawrapper.dwcdn.net/viAN9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+Boom. We're created a little Python routine that, provided with an updated dataset, could be rerun at any time to create a fresh chart.
+
+There are numerous ways you could run such a script according to a schedule, a task beyond the scope of this course. One popular tool is [GitHub Actions](https://docs.github.com/en/actions), a free service linked to GitHub respositories. You can learn how journalists use it to automate data work in our complimentary class [“First GitHub Scraper"](https://palewi.re/docs/first-github-scraper/).
+
 ## About this class
 
-tk
+This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Sergio Sanchez Zavala](https://github.com/chekos) for [a training session](https://schedules.ire.org/nicar-2024/index.html#2110) at the National Institute for Computer-Assisted Reporting (NICAR)’s 2024 conference in Baltimore. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered code completion tool. The materials are available as free and open source on [GitHub](https://github.com/palewire/first-automated-chart)
