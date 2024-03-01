@@ -340,59 +340,135 @@ dw.display_chart(chart_id)
 
 ## Create many charts
 
+Now on to our next challenge. While using Python to make one chart is a nice trick, it's also pretty easy to do with a mouse and keyboard. One benefit of automating chart creation with Python is that the code you right can be reused to make many charts.
+
+For instance, we could create a chart for each of Baltimore's police districts. Take a look at our sample data again by running the `head` command.
+
 ```python
 df.head()
 ```
+
+You'll notice that there is column called District. We can have a closer at what's in it by running the `value_counts` method, just as we did with the year.
 
 ```python
 df.District.value_counts()
 ```
 
+That will return tallies like this:
+
 ```python
-def create_chart(district: str):
+Western      29842
+Central      28501
+Eastern      28114
+Southern     25780
+Northeast    24180
+Southeast    23710
+Northwest    22044
+Southwest    21822
+Northern     13087
+```
+
+We can use a Python to loop through the district and create an annual arrests chart for each one. While there are numerous ways to accomplish this task, for this example we'll write a function that takes the name of a district as an argument and returns a chart. We'll then use a `for` loop to call that function for each district.
+
+Here's a function that does exactly that. We don't have enough time to walk through every step of it, but if you look closely you can see that it's very similar to the code we used to create the first chart. You should copy and paste it into a new cell in your notebook.
+
+```python
+def create_chart(district: str) -> str:
+    """Create a Datawrapper column chart of arrests by year in a Baltimore police district.
+    
+    Args:
+        district: The name of the district to chart.
+
+    Returns:
+        The chart's embed code.
+    """
+    # Filter the dataframe to the provided district
     district_df = df[df.District == district]
+
+    # Count the number of arrests in each year
     district_by_year = district_df.year.value_counts().sort_index().reset_index()
+
+    # Create the chart with Datawrapper
     chart_config = dw.create_chart(
+        # Use the district name in the title
         title=f"Arrests in Baltimore's {district} District",
+        # Use the column chart type
         chart_type="column-chart",
+        # Pass in the filtered data
         data=district_by_year,
         metadata={
+            # Set the bar colors
             "visualize": {
-                "base-color": "#113421"  # IRE's accent color
+                "base-color": "#bf7836"  # IRE's accent color
+            },
+            # Set the chart description
+            "describe": {
+                "source-name": "OpenBaltimore",
+                "source-url": "https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
+                "byline": "First Automated Chart"
             }
         }
     )
-    chart_id = chart_config["id"]
-    dw.update_description(
-        chart_id,
-        source_name="OpenBaltimore",
-        source_url="https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
-        byline="Ben Welsh",
-    )
 
+    # Pull out the chart's unique identifier
+    chart_id = chart_config["id"]
+
+    # Publish the chart
     dw.publish_chart(chart_id)
+
+    # Return the chart's embed code
     return dw.display_chart(chart_id)
 ```
+
+Now all it takes to create a chart is to call the function and pass in the name of a district. For instance, to create a chart for the Western District, you would run the following code:
 
 ```python
 create_chart("Western")
 ```
 
+<iframe title="Arrests in Baltimore's Western District" aria-label="Column Chart" id="datawrapper-chart-DX7wA" src="https://datawrapper.dwcdn.net/DX7wA/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+And to create a chart for the Eastern District, you would run the following code:
+
 ```python
+create_chart("Eastern")
+```
+
+<iframe title="Arrests in Baltimore's Eastern District" aria-label="Column Chart" id="datawrapper-chart-b9xrP" src="https://datawrapper.dwcdn.net/b9xrP/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+Finally, we can loop through the list of unique districts and create a chart for each one. We'll save each chart as a variable in a list so that we can display them all at once. Copy and paste the following code into a new cell in your notebook.
+
+```python
+# Create an empty list to hold the charts
 chart_list = []
+
+# Loop through the unique districts...
 for district in df.District.dropna().unique():
+    # Print a message to the console
     print(f"Creating chart for the {district} District")
+
+    # Create a chart for the district and save it as a variable
     c = create_chart(district)
+
+    # Add the chart to the list
     chart_list.append(c)
 ```
+
+The charts will be created and published in Datawrapper. You can see them all at once in your notebook by introducing the `display` function from the `IPython.display` library.
 
 ```python
 from IPython.display import display
 ```
 
+And passing in the list of charts as arguments.
+
 ```python
 display(*chart_list)
 ```
+
+Not bad, right! You've just created a dozen charts in a few seconds. You could do the same with an unlimited number of charts, as long as you have the data to supply the API.
 
 ## Create a chart that runs on a schedule
 
