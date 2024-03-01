@@ -305,6 +305,10 @@ dw.display_chart(chart_id)
 
 You can much more than that by using Python to configure the chart's metadata. There are literally dozens of different ways to customize axis labels, annotations, colors, legends, lines, bars and much more. A simple example is to change the color of the bars to match the IRE's accent color.
 
+```{note}
+You can find a list of many of the available options in the [Datawrapper documentation](https://developer.datawrapper.de/docs/chart-properties).
+```
+
 That can be done by creating a dictionary of metadata to the `metadata` parameter of the `update_chart` method. Here we'll set the "base-color" to the IRE's accent color, which is a nice shade of orange. It must conform precisely with the format expected by Datawrapper's API.
 
 ```python
