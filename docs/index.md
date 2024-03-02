@@ -26,7 +26,7 @@ If you've brave enough to give the Python programming language a try, you are qu
 
 ## What is an API?
 
-Before we start, lets clear up the obvious questions. What the heck is an API? And why do programmers talk about them so much?
+Before we start, lets answer the obvious questions. What the heck is an API? And why do programmers talk about them so much?
 
 Officially, [API](https://en.wikipedia.org/wiki/API) is an acronym that stands for application programming interface. But that's pretty jargony too and probably doesn't clear things up much.
 
