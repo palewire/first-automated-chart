@@ -38,7 +38,7 @@ In the same way, the [Datawrapper API](https://developer.datawrapper.de/docs/get
 
 ## Create a Datawrapper API key
 
-The first step is to create an API key that grants your code permission to create and edit charts using your Datawrapper account. This is a simple process that can be done in a few clicks. It all begins at the Datawrapper homepage at [datawrapper.de](https://www.datawrapper.de/).
+The first step is to create an API key that grants your code permission to make charts using your Datawrapper account. This is a simple process that can be done in a few clicks. It all begins at the Datawrapper homepage at [datawrapper.de](https://www.datawrapper.de/).
 
 Hit the "Login" button in the upper right corner of the screen.
 
