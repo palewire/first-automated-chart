@@ -127,7 +127,7 @@ The key first step is to authenticate with the Datawrapper API using the token y
 dw = Datawrapper("YOUR ACCESS TOKEN")
 ```
 
-We can verify that our connection is working by asking the `dw` object to tell us about the account.
+Verify that your connection is working by asking the `dw` object to ask the API information about your account.
 
 ```python
 dw.get_my_account()
