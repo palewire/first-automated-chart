@@ -99,9 +99,9 @@ Now click the "New notebook..." button to open the Python interface. It will ope
 
 ![](_static/jupyter-desktop-blank.png)
 
-The remainder of this class will assume you know how to enter code into cells and execute them in the notebook. If you don't, don't worry. It's very easy. You can quickly learn how by working through the introductory chapter of ["First Python Notebook"](https://palewi.re/docs/first-python-notebook/notebook.html), another open-source course available on this site.
+The remainder of this class will assume you know how to enter code into cells and execute them in the notebook. If you don't, don't worry. It's very easy. You can quickly learn how by working through the introductory chapter of ["First Python Notebook,"](https://palewi.re/docs/first-python-notebook/notebook.html) another free course available on this site.
 
-From here on out, you can follow along with the code examples in this notebook. You can also copy and paste the code into your own notebook and run it there.
+From here on out, you should follow along by running the examples in your notebook. I encourage you to copy and paste the code.
 
 ## Connect to the Datawrapper API
 
