@@ -4,10 +4,10 @@ Learn how you can use [Python](https://www.python.org/) and the [Datawrapper](ht
 
 ## What this class covers
 
-* How to create an key that allows you to edit charts using the Datawrapper API
-* How to use a Jupyter notebook and the Python `datawrapper` library to create a chart
-* How to write a template function that creates a chart for each item in a list
-* How to create a chart that updates on a schedule 
+* Creating an key that allows you to edit charts using the Datawrapper API
+* Using the Python `datawrapper` library to create a chart
+* Writing a template function that can create a chart for each item in a list
+* Regularly updating charts on a schedule 
 
 ## What you need
 
