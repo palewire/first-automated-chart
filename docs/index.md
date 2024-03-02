@@ -16,7 +16,7 @@ If you've brave enough to give the Python programming language a try, you are qu
 ## Table of contents
 
 * [Create a Datawrapper API key](#create-a-datawrapper-api-key)
-* [Getting started with Project Jupyter](#getting-started-with-project-jupyter)
+* [Get started with a Jupyter notebook](#getting-started-with-project-jupyter)
 * [Connect to the Datawrapper API](#connect-to-the-datawrapper-api)
 * [Import data](#import-data)
 * [Create one chart](#create-one-chart)
@@ -63,7 +63,7 @@ That will bring you to a new page with your token printed in the middle. It will
 
 ![](_static/datawrapper-token.png)
 
-## Getting started with Project Jupyter
+## Get started with a Jupyter notebook
 
 A [Jupyter notebook](http://jupyter.org/) is a browser-based interface where you can write, run, remix and republish code.
 
