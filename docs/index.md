@@ -44,7 +44,7 @@ Hit the "Login" button in the upper right corner of the screen.
 
 [![Datawrapper's homepage](_static/datawrapper-homepage.png)](https://www.datawrapper.de/)
 
-If you already have an account, enter your email and password. If you don't, click the "Create a new account" button at the bottom of the form. If you m ake a new account, be sure to confirm your email address when Datawrapper sends you a message.
+If you already have an account, enter your email and password. If you don't, click the "Create a new account" button at the bottom of the form. If you make a new account, be sure to confirm your email address when Datawrapper sends you a message.
 
 ![Datawrapper's login page](_static/datawrapper-login.png)
 
