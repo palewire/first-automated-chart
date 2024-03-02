@@ -11,7 +11,7 @@ Learn how you can use [Python](https://www.python.org/) and the [Datawrapper](ht
 
 ## What you need
 
-If you've brave enough to give the Python programming language a try, you can learn something. You'll need some Python experience to get very far creating charts of your own, but the materials below can help anyone understand what's possible.
+If you've brave enough to give the Python programming language a try, you are qualified to take this class. You'll need some coding skills to create charts on your own, but the materials below can help anyone understand what's possible.
 
 ## Table of contents
 
