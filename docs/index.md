@@ -27,41 +27,41 @@ If you've brave enough to give the Python programming language a try, you are qu
 
 The first step is to create an API key that will allow you to create and edit charts using the Datawrapper API. This is a simple process that can be done in a few clicks. It all begins at the Datawrapper homepage at [datawrapper.de](https://www.datawrapper.de/).
 
-[![](_static/datawrapper-homepage.png)](https://www.datawrapper.de/)
-
 Hit the "Login" button in the upper right corner of the screen.
 
-![](_static/datawrapper-login.png)
+[![Datawrapper's homepage](_static/datawrapper-homepage.png)](https://www.datawrapper.de/)
 
 If you already have an account, enter your email and password to log in. If you don't, click the "Create a new account" button at the bottom of the form. If you m ake a new account, be sure to confirm your email address when Datawrapper sends you a message.
 
+![Datawrapper's login page](_static/datawrapper-login.png)
+
 Once you are logged in, you should see a page that looks like this:
 
-![](_static/datawrapper-landing.png)
+![The Datawrapper user dashboard](_static/datawrapper-landing.png)
 
 Hover on the menu icon in the upper right corner of the screen and click "Settings."
 
-![](_static/datawrapper-dropdown.png)
+![The Datawrapper settings menu](_static/datawrapper-dropdown.png)
 
-That will drop you on the setting page. Here you want to click on the "API Tokens" link in the left-hand navigation.
+That will send you to the settings panel. Here you want to click on the "API Tokens" link in the left-hand navigation.
 
-![](_static/datawrapper-settings-panel.png)
+![The Datawrapper settings panel](_static/datawrapper-settings-panel.png)
 
 ```{note}
-If you made a new account and haven't confirmed your email address, you will see an error message. Check your email for a message from Datawrapper and click the link to confirm your account.
+If you made a new account and haven't confirmed your email address, you will see an error message. Check your inbox for a message from Datawrapper and click the link to confirm your account.
 ```
 
 On the next page, hit the "Create new Access Token" button.
 
-![](_static/datawrapper-create-button.png)
+![Where you can create an access token with Datawrapper](_static/datawrapper-create-button.png)
 
 That will bring up a form. You should give your token a name that will help you remember what it's for. For instance, you might call it "First Automated Chart." Then click all of the permissions checkboxes. This will allow your token to do everything it needs to do. Then hit the "Generate token" button at the bottom.
 
-![](_static/datawrapper-configure-token.png)
+![The Datawrapper API token configuration options](_static/datawrapper-configure-token.png)
 
 That will bring you to a new page with your token printed in the middle. It will look something like the following, though I have redacted the actual token for security reasons. You should copy this token and save it in a safe place. It is the key you will need to use the Datawrapper API.
 
-![](_static/datawrapper-token.png)
+![A Datawrapper API token's profile page](_static/datawrapper-token.png)
 
 ## Get started with a Jupyter notebook
 
