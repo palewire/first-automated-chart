@@ -15,6 +15,7 @@ If you've brave enough to give the Python programming language a try, you are qu
 
 ## Table of contents
 
+* [What is an API?](#what-is-an-api)
 * [Create a Datawrapper API key](#create-a-datawrapper-api-key)
 * [Get started with a Jupyter notebook](#getting-started-with-project-jupyter)
 * [Connect to the Datawrapper API](#connect-to-the-datawrapper-api)
