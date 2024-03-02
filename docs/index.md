@@ -59,7 +59,7 @@ That will bring up a form. You should give your token a name that will help you 
 
 ![The Datawrapper API token configuration options](_static/datawrapper-configure-token.png)
 
-That will bring you to a new page with your token printed in the middle. It will look something like the following, though I have redacted the actual token for security reasons. You should copy this token and save it in a safe place. It is the key you will need to use the Datawrapper API.
+That will bring you to a new page with your token printed in the middle. The page will look something like the following, though I have redacted the actual token for security reasons. You should copy the long string of characters and save it in a safe place, like a password manager. It is the key you will need to access the Datawrapper API using your account.
 
 ![A Datawrapper API token's profile page](_static/datawrapper-token.png)
 
