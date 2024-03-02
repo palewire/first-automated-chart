@@ -105,7 +105,7 @@ From here on out, you should follow along by running the examples in your notebo
 
 ## Connect to the Datawrapper API
 
-The `datawrapper` Python library, created by the authors of this class, is a simple tool that allows you to interact with the Datawrapper API using Python. It is available for free on the [Python Package Index](https://pypi.org/project/datawrapper/), a repository of open-source software that can be installed in your Jupyter Desktop environment with a single command in the first cell.
+The `datawrapper` Python library, created by one of the authors of this class, is a simple tool that allows you to interact with the Datawrapper API using Python. It is available for free on the [Python Package Index](https://pypi.org/project/datawrapper/), a repository of open-source software that can be installed in your Jupyter Desktop environment with a single command in the first cell.
 
 ```bash
 !pip install git+https://github.com/chekos/Datawrapper.git#egg=datawrapper
