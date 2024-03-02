@@ -149,7 +149,7 @@ It should return a dictionary with metadat about you, including your email addre
  'entitlements': {}}
 ```
 
-If an error appears, you'll need to verify that you have entered your token correctly. If you are sure you have, you might need to check that your token has the correct permissions. It should have all of the permissions checked when you created it.
+If an error appears, verify that you entered your token correctly. If you are sure you have, check that your token has the correct permissions in the Datawrapper settings panel.
 
 ## Import data
 
