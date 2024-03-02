@@ -133,7 +133,7 @@ We can verify that our connection is working by asking the `dw` object to tell u
 dw.get_my_account()
 ```
 
-It should return a dictionary with information about the account, including the user's email address and role. It will look something like this:
+It should return a dictionary with metadat about you, including your email address and role. It will look something like this:
 
 ```python
 {'id': 696724,
