@@ -80,7 +80,7 @@ That will bring you to a new page with your token printed in the middle. The pag
 
 A [Jupyter notebook](http://jupyter.org/) is a browser-based interface where you can write, run, remix and republish code.
 
-It is free software you can install and run like any other open-source library. It is used by scientists, scholars, investors and corporations to create and share their research. It is also used by journalists to develop stories and show their work.
+It is free software you can install and run like any other open-source library. It is used by scientists, scholars, investors and corporations to create and share research. It is also used by journalists to develop stories and show their work.
 
 There are numerous ways to install and configure Jupyter notebooks. Since this tutorial is designed for beginners, it will demonstrate how to use [JupyterLab Desktop](https://github.com/jupyterlab/jupyterlab-desktop), a self-contained application that provides a ready-to-use Python environment with several popular libraries bundled in. It can be installed on any operating system with a simple point-and-click interface.
 
@@ -94,7 +94,7 @@ Scroll down to the documentation below the code until you reach the Installation
 
 Then pick the link appropriate for your operating system. The installation file is large so the download might take a while.
 
-Find the file in your downloads directory and double click it to begin the installation process. Follow the instructions presented by the pop-up windows, sticking to the default options.
+Find the file in your downloads directory and double click it to begin the process. Follow the instructions presented by the pop-up windows, sticking to the default options.
 
 ```{note}
 Your computer’s operating system might flag the JupyterLab Desktop installer as an unverified or insecure application. Don’t worry. The tool has been vetted by Project Jupyter’s core developers and it’s safe to use.
@@ -102,13 +102,11 @@ Your computer’s operating system might flag the JupyterLab Desktop installer a
 If your system is blocking you from installing the tool, you’ll likely need to work around its barriers. For instance, on MacOS, this might require visiting your system’s security settings to allow the installation.
 ```
 
-Once the program is installed, you can accept the installation wizard’s offer to immediately open the program, or you can search for “Jupyter Lab” in your operating system’s application finder.
-
-That will open up a new window that looks something like this:
+Once the installer finishes, you can accept its offer to immediately open the program, or you can search for “Jupyter Lab” in your operating system’s application finder. That will open up a new window that looks something like this:
 
 ![](_static/jupyter-desktop-splash.png)
 
-Now click the "New notebook..." button to open the Python interface. It will open up the notebook with an empty cell, which is where you can write and run your code.
+Now click the "New notebook..." button to start a Python interface. It will open up the notebook with an empty cell, which is where you can write and run your code.
 
 ![](_static/jupyter-desktop-blank.png)
 
@@ -118,7 +116,7 @@ From here on out, you should follow along by running the examples in your notebo
 
 ## Connect to the Datawrapper API
 
-The `datawrapper` Python library, created by one of the authors of this class, is a simple tool that allows you to interact with the Datawrapper API using Python. It is available for free on the [Python Package Index](https://pypi.org/project/datawrapper/), a repository of open-source software. You should install with this command in the first cell.
+The `datawrapper` library, created by one of the authors of this class, is a tool that allows you to interact with the Datawrapper API using Python. It is available for free on the [Python Package Index](https://pypi.org/project/datawrapper/), a repository of open-source software. You should install it with this command in the first cell.
 
 ```bash
 %pip install git+https://github.com/chekos/Datawrapper.git#egg=datawrapper
@@ -140,13 +138,13 @@ The key first step is to authenticate with the Datawrapper API using the token y
 dw = Datawrapper("YOUR ACCESS TOKEN")
 ```
 
-Verify that your connection is working by asking the `dw` object to ask the API information about your account.
+Verify that your connection is working by having the `dw` object ask the API for information about your account.
 
 ```python
 dw.get_my_account()
 ```
 
-It should return a dictionary with metadat about you, including your email address and role. It will look something like this:
+It should return a dictionary with metadata about you, including your email address and role. It will look something like this:
 
 ```python
 {'id': 696724,
@@ -166,18 +164,22 @@ If an error appears, verify that you entered your token correctly. If you are su
 
 ## Import data
 
-Now that we're connected to Datawrapper, it's time to introduct the data that we'll use to create our charts. We'll use a dataset of arrests in Baltimore, Maryland, that is available [on the city's data portal](https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about). To speed up the class, we've created [a simplified version](https://raw.githubusercontent.com/palewire/first-automated-chart/main/_notebooks/arrests.csv) for use here.
+Now that we're connected to Datawrapper, it's time to introduct the data that we'll use to create our charts. We'll use a dataset of arrests made by the Baltimore Police Department that is published [on the city's data portal](https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about). To speed up the class, we've created [a simplified version](https://raw.githubusercontent.com/palewire/first-automated-chart/main/_notebooks/arrests.csv) for use here.
 
-We'll read in the data using the `pandas` library, which is a popular tool for working with data in Python. Before you can use it, you'll need to install it in your Jupyter Desktop environment using the same technique you used to install the `datawrapper` library.
-
-```bash
-!pip install pandas
-```
-
-Now it can be imported into your notebook.
+We'll read in the data using the [`pandas`](https://pandas.pydata.org/) library, which is a popular tool for working with data in Python that covered in depth by ["First Python Notebook."](https://palewi.re/docs/first-python-notebook/) Before you can use it, you'll need to import it in your Jupyter Desktop environment using the same technique you used to install the `datawrapper` library.
 
 ```python
 import pandas as pd
+```
+
+```{note}
+If your notebook throws an error and says pandas can't be found, you can install it using the technique we employed for the datawrapper library.
+
+```bash
+%pip install pandas
+```
+
+After that completes, try importing pandas again.
 ```
 
 We'll read in the data using the `read_csv` function and save it as a variable named `df`.
