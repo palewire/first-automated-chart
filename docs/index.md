@@ -164,15 +164,15 @@ If an error appears, verify that you entered your token correctly. If you are su
 
 ## Import data
 
-Now that we're connected to Datawrapper, it's time to introduct the data that we'll use to create our charts. We'll use a dataset of arrests made by the Baltimore Police Department that is published [on the city's data portal](https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about). To speed up the class, we've created [a simplified version](https://raw.githubusercontent.com/palewire/first-automated-chart/main/_notebooks/arrests.csv) for use here.
+Now that you're connected to Datawrapper, it's time to introduce the data you'll use to create your charts. You'll use a dataset of arrests made by the Baltimore Police Department that is published [on the city's data portal](https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about). To speed up the class, we've created [a simplified version](https://raw.githubusercontent.com/palewire/first-automated-chart/main/_notebooks/arrests.csv) that doesn't require any data cleaning.
 
-We'll read in the data using the [`pandas`](https://pandas.pydata.org/) library, which is a popular tool for working with data in Python that covered in depth by ["First Python Notebook."](https://palewi.re/docs/first-python-notebook/) Before you can use it, you'll need to import it in your Jupyter Desktop environment using the same technique you used to install the `datawrapper` library.
+We'll read in the data using the [`pandas`](https://pandas.pydata.org/) library, a popular tool for working with data in Python covered in depth by ["First Python Notebook."](https://palewi.re/docs/first-python-notebook/) Before you can use it, you'll need to import it in your Jupyter Desktop environment using the same technique you used to install the `datawrapper` library.
 
 ```python
 import pandas as pd
 ```
 
-```{note}
+``````{note}
 If your notebook throws an error and says pandas can't be found, you can install it using the technique we employed for the datawrapper library.
 
 ```bash
@@ -180,9 +180,10 @@ If your notebook throws an error and says pandas can't be found, you can install
 ```
 
 After that completes, try importing pandas again.
-```
+``````
 
-We'll read in the data using the `read_csv` function and save it as a variable named `df`.
+
+Read in the data using the `read_csv` function and save it as a variable named `df`. First we'll use the URL of the dataset, which is hosted on GitHub, and then we'll pass in a list of the columns that contain dates so that pandas can parse them correctly.
 
 ```python
 df = pd.read_csv(
@@ -191,7 +192,7 @@ df = pd.read_csv(
 )
 ```
 
-That can be inspected by running the `head` method on the `df` object, which will show the first five rows.
+The table, known in pandas as a DataFrame, can be inspected by running the `head` method on the `df` object. That will show the first five rows.
 
 ```python
 df.head()
@@ -201,19 +202,19 @@ You can see that the dataset features one row for each arrest, with columns for 
 
 ## Create one chart
 
-With these materials, any number of charts could be created. As a simple start, lets consider a chart that shows the number of arrests in Baltimore by year. We could look into the idea by creating a new column in the `df` object that contains the year of each arrest.
+With these materials, any number of charts could be created. As a simple start, lets consider a chart that shows the number of arrests in Baltimore by year. Lets look into the idea by creating a new column in the `df` object that contains the year of each arrest.
 
 ```python
 df['year'] = df.ArrestDateTime.dt.year
 ```
 
-And then we could count the tally of arrests in each year.
+Then tally the arrests logged in each year.
 
 ```python
 df.year.value_counts()
 ```
 
-That will return some eye-opening numbers. It looks like the number of arrests in Baltimore has been falling over the years, exactly the kind of thing we might want to visualize with a chart.
+That will return some eye-opening numbers. The number of arrests in Baltimore has been falling dramatically in recent years, exactly the kind of trend we might want to visualize with a chart.
 
 ```python
 2010    45224
@@ -233,13 +234,17 @@ That will return some eye-opening numbers. It looks like the number of arrests i
 Name: year, dtype: int64
 ```
 
-Before we can pass our data into Datawrapper, we need to reshape it into a pandas DataFrame, the kind of data structure that our Python library expects. We can do that by calling the `sort_index` and `reset_index` methods on the end of the `value_counts` method.
+```{note}
+You can read about this long-term trend in stories by [the Baltimore Banner](https://www.thebaltimorebanner.com/community/criminal-justice/driven-by-warrants-arrests-are-up-in-baltimore-for-the-first-time-in-more-than-a-decade-SXXOPBKJSVBY7IN7GWRHQ5IDAM/), the [BBC](https://www.bbc.com/news/world-us-canada-32889836) the [Washington Post](https://www.washingtonpost.com/outlook/baltimore-police-reforms-crime/2020/06/18/7d60e91e-b041-11ea-8758-bfd1d045525a_story.html) and the [New York Post](https://nypost.com/2015/05/28/baltimore-gets-bloodier-as-arrests-drop-sharply/).
+```
+
+Before we can pass our data into Datawrapper, we need to reshape it into a pandas DataFrame, the kind of data structure that our datawrapper library expects. We can do that by calling the `sort_index` and `reset_index` methods on the end of the `value_counts` method.
 
 ```python
 totals_by_year = df.year.value_counts().sort_index().reset_index()
 ```
 
-That should output a tidy table that's ready for the API. The only other things you need to make a basic chart are a title and a chart type. You can write whatever headline you like, but every chart type has a strict code name that you can find in the [Datawrapper documentation](https://developer.datawrapper.de/docs/chart-types).
+That should output a tidy table that's ready for the API. The only other things you need to make a basic chart are a headline and a chart type. You can write whatever headline you like, but every chart type has a strict code name that you can find in the [Datawrapper documentation](https://developer.datawrapper.de/docs/chart-types).
 
 [![](_static/datawrapper-chart-types.png)](https://developer.datawrapper.de/docs/chart-types)
 
@@ -257,11 +262,11 @@ chart_config = dw.create_chart(
 )
 ```
 
-If the cell runs without error, a new chart is born. You can see it by visiting [https://app.datawrapper.de/](https://https://app.datawrapper.de/) in your logged in browser.
+If the cell runs without error, a new chart is born. You can see it by visiting [https://app.datawrapper.de/](https://https://app.datawrapper.de/) in your browser.
 
-![](_static/first-chart.png)
+![A new chart on the datawrapper dashboard](_static/first-chart.png)
 
-Congratulations! You've created your first chart using the Datawrapper API. While it's ready for review in the dashboard, it won't be published by default. Let's learn how to do that next.
+Congratulations! You've created your first chart using the Datawrapper API. While it's ready for review in the dashboard, it won't be published for others to see. Let's learn how to do that next.
 
 Back in our notebook, the method returned a dictionary with information about the chart that was created. You can inspect it by running the variable name in a new cell.
 
@@ -294,7 +299,7 @@ dw.display_chart(chart_id)
 
 ### Set the chart description
 
-A common practice in data journalism is to provide a citation of the sourcing of the data behind a chart. This is often done in the "Describe" tab of the Datawrapper interface. You can also do it using the `update_description` method of the `dw` object. Here we'll set the source name, source URL and byline.
+A common practice in journalism is to provide a citation for the soruce data behind a chart. This is can be done manually in the "Describe" tab of the Datawrapper interface. You can also do it using the `update_description` method of the `dw` object. Here we'll set the source name, source URL and byline.
 
 ```python
 dw.update_description(
@@ -311,7 +316,7 @@ Run that cell and republish your chart.
 dw.publish_chart(chart_id)
 ```
 
-You can see the changes by, again, asking the `dw` object to display the chart's embed.
+You can see the changes by, again, asking the `dw` object to display the chart's embed. Take a look at the bottom line of the chart to see the citation.
 
 ```python
 dw.display_chart(chart_id)
@@ -322,18 +327,18 @@ dw.display_chart(chart_id)
 
 ### Style the chart
 
-You can much more than that by using Python to configure the chart's metadata. There are literally dozens of different ways to customize axis labels, annotations, colors, legends, lines, bars and much more. A simple example is to change the color of the bars to match the IRE's accent color.
+You cando  much more than that by using Python to configure the chart's metadata. There are literally dozens of different ways to customize axis labels, annotations, colors, legends, lines, bars and other features.
 
 ```{note}
 You can find a list of many of the available options in the [Datawrapper documentation](https://developer.datawrapper.de/docs/chart-properties).
 ```
 
-That can be done by creating a dictionary of metadata to the `metadata` parameter of the `update_chart` method. Here we'll set the "base-color" to the IRE's accent color, which is a nice shade of orange. It must conform precisely with the format expected by Datawrapper's API.
+A simple example is to change the color of the bars. That can be done by creating a dictionary of configuration options to the `metadata` parameter of the `update_chart` method. It must conform precisely with the format expected by Datawrapper's API.  Here we'll set the "base-color" to a nice shade of orange.
 
 ```python
 metadata = {
     "visualize": {
-        "base-color": "#bf7836"  # IRE's accent color
+        "base-color": "#bf7836"  # Our accent color
     }
 }
 ```
@@ -363,15 +368,17 @@ dw.display_chart(chart_id)
 
 ## Create many charts
 
-Now on to our next challenge. While using Python to make one chart is a nice trick, it's also pretty easy to do with a mouse and keyboard. One benefit of automating chart creation with Python is that the code you right can be reused to make many charts.
+While using Python to make one chart is a nice trick, it's also pretty easy to do with a mouse and keyboard. One benefit of automating chart creation with Python is that the code you write to make one chart can be reused to make many charts.
 
-For instance, we could create a chart for each of Baltimore's police districts. Take a look at our sample data again by running the `head` command.
+For instance, we could use the tricks we learned making our citywide chart to create a separate chart for each of Baltimore's police districts.
+
+If you take a look at our sample data again by running the `head` command, you'll notice that there is column called “District.”
 
 ```python
 df.head()
 ```
 
-You'll notice that there is column called District. We can have a closer at what's in it by running the `value_counts` method, just as we did with the year.
+Have a closer at what's in it by running the `value_counts` method, just as we did with the year. It will show that there are nine unique districts in the dataset.
 
 ```python
 df.District.value_counts()
@@ -391,7 +398,9 @@ Southwest    21822
 Northern     13087
 ```
 
-We can use a Python to loop through the district and create an annual arrests chart for each one. While there are numerous ways to accomplish this task, for this example we'll write a function that takes the name of a district as an argument and returns a chart. We'll then use a `for` loop to call that function for each district.
+That means could use Python and our datawrapper library create nine different annual arrests charts.
+
+While there are numerous ways to accomplish this task, in this example we'll write a function that takes the name of a district as an argument and returns a chart. We'll then use a `for` loop to call that function for each district.
 
 Here's a function that does exactly that. We don't have enough time to walk through every step of it, but if you look closely you can see that it's very similar to the code we used to create the first chart. You should copy and paste it into a new cell in your notebook.
 
@@ -479,27 +488,27 @@ for district in df.District.dropna().unique():
     chart_list.append(c)
 ```
 
-The charts will be created and published in Datawrapper. You can see them all at once in your notebook by introducing the `display` function from the `IPython.display` library.
+You can see them all at once in your notebook by introducing the `display` function from the `IPython.display` library ...
 
 ```python
 from IPython.display import display
 ```
 
-And passing in the list of charts as arguments.
+... and passing in the list of charts as arguments.
 
 ```python
 display(*chart_list)
 ```
 
-Not bad, right! You've just created a dozen charts in a few seconds. You could do the same with an unlimited number of charts, as long as you have the data to supply the API.
+Not bad, right? You've just created a dozen charts in a few seconds. You could do the same with an unlimited number of charts, as long as you have the data to supply the API.
 
 ## Create a chart that runs on a schedule
 
-That's one example of how Python can supercharge your chart production. Here's another: You can write computer code that, when run on a schedule, will automatically create and publish a chart. This is a powerful way to publish charts whenever new data is available, or to create a series of charts that update on a regular basis.
+That's one example of how Python can supercharge your chart production. Here's another: You can write computer code that, when run on a schedule, will create a chart. This is a powerful way to publish whenever new records are available.
 
-As an example, let's automate a chart that could be useful to a newsroom. We'll create a chart that shows the top 10 arrest charges in Baltimore over the last week which could, in theory, be published every Monday morning when new data is posted to the city's data portal.
+As an example, let's automate a chart that could be useful to a newsroom. We'll create a chart that shows the top 10 arrest charges in Baltimore over the last week. It could, in theory, be published every Monday morning after new data is posted to the city data portal.
 
-First we'll find the most recent date in our dataset, which will be the end of the week we want to chart. That can be done with pandas by calling the `max` method on the `ArrestDateTime` column.
+First we'll find the most recent date in our dataset, which will be the end of the week we want to chart. That can be done with pandas by calling the `max` method on a date column.
 
 ```python
 df.ArrestDateTime.dt.date.max()
@@ -511,19 +520,21 @@ Let's save that into a variable.
 end_date = df.ArrestDateTime.dt.date.max()
 ```
 
-Then we'll use the `timedelta` class from the `datetime` module to find the date one week before. First we import the tool.
+Then we'll use the `timedelta` class from the `datetime` module to find the date one week before, which will be the start of our date range.
+
+First we import the tool.
 
 ```python
 from datetime import timedelta
 ```
 
-Then we can subtract sevent days from the end date to find the start date.
+Then we can subtract seven days from the end date.
 
 ```python
 seven_days_ago = end_date - timedelta(days=7)
 ```
 
-Filter the dataset to the last week by creating a new DataFrame that only contains the rows where the `ArrestDateTime` is after the start date.
+Now filter the dataset to the last week by creating a new DataFrame that only contains the rows where the `ArrestDateTime` is after the start date.
 
 ```python
 last_week_df = df[df.ArrestDateTime.dt.date > seven_days_ago]
@@ -583,8 +594,8 @@ dw.display_chart(chart_id)
 
 Boom. We're created a little Python routine that, provided with an updated dataset, could be rerun at any time to create a fresh chart.
 
-There are numerous ways you could run such a script according to a schedule, a task beyond the scope of this course. One popular tool is [GitHub Actions](https://docs.github.com/en/actions), a free service linked to GitHub respositories. You can learn how journalists use it to automate data work in our complimentary class [“First GitHub Scraper"](https://palewi.re/docs/first-github-scraper/).
+There are numerous ways you could run such a script according to a schedule, a task beyond the scope of this course. One popular tool is [GitHub Actions](https://docs.github.com/en/actions), a free service linked to GitHub respositories. You can learn how journalists use it to automate data work in our complimentary class [“First GitHub Scraper."](https://palewi.re/docs/first-github-scraper/)
 
 ## About this class
 
-This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Sergio Sanchez Zavala](https://github.com/chekos) for [a training session](https://schedules.ire.org/nicar-2024/index.html#2110) at the National Institute for Computer-Assisted Reporting (NICAR)’s 2024 conference in Baltimore. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered code completion tool. The materials are available as free and open source on [GitHub](https://github.com/palewire/first-automated-chart)
+This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Sergio Sanchez Zavala](https://github.com/chekos) for [a training session](https://schedules.ire.org/nicar-2024/index.html#2110) at the National Institute for Computer-Assisted Reporting’s 2024 conference in Baltimore. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered text generator. The materials are available as free and open source on [GitHub](https://github.com/palewire/first-automated-chart)
