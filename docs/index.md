@@ -118,8 +118,8 @@ From here on out, you should follow along by running the examples in your notebo
 
 The `datawrapper` library, created by one of the authors of this class, is a tool that allows you to interact with the Datawrapper API using Python. It is available for free on the [Python Package Index](https://pypi.org/project/datawrapper/), a repository of open-source software. You should install it with this command in the first cell.
 
-```bash
-%pip install git+https://github.com/chekos/Datawrapper.git#egg=datawrapper
+```
+!pip install datawrapper
 ```
 
 ```{note}
@@ -175,8 +175,8 @@ import pandas as pd
 ``````{note}
 If your notebook throws an error and says pandas can't be found, you can install it using the technique we employed for the datawrapper library.
 
-```bash
-%pip install pandas
+```
+pip install pandas
 ```
 
 After that completes, try importing pandas again.
