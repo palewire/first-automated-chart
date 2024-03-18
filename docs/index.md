@@ -327,7 +327,7 @@ dw.display_chart(chart_id)
 
 ### Style the chart
 
-You cando  much more than that by using Python to configure the chart's metadata. There are literally dozens of different ways to customize axis labels, annotations, colors, legends, lines, bars and other features.
+You can do much more than that by using Python to configure the chart's metadata. There are literally dozens of different ways to customize axis labels, annotations, colors, legends, lines, bars and other features.
 
 ```{note}
 You can find a list of many of the available options in the [Datawrapper documentation](https://developer.datawrapper.de/docs/chart-properties).
