@@ -17,12 +17,12 @@ If you've brave enough to give the Python programming language a try, you are qu
 
 * [What is an API?](#what-is-an-api)
 * [Create a Datawrapper API key](#create-a-datawrapper-api-key)
-* [Get started with a Jupyter notebook](#getting-started-with-project-jupyter)
+* [Get started with a Jupyter notebook](#getting-started-with-a-jupyter-notebook)
 * [Connect to the Datawrapper API](#connect-to-the-datawrapper-api)
 * [Import data](#import-data)
 * [Create one chart](#create-one-chart)
 * [Create many charts](#create-many-charts)
-* [Create a scheduled chart](#create-a-chart-that-runs-on-a-schedule)
+* [Create a scheduled chart](#create-a-scheduled-chart)
 
 ## What is an API?
 
