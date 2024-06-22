@@ -30,9 +30,9 @@ Before we start, lets answer the obvious questions. What the heck is an API? And
 
 Officially, [API](https://en.wikipedia.org/wiki/API) is an acronym that stands for application programming interface. But that's pretty jargony too and probably doesn't clear things up much.
 
-The term was coined long before the web existed to describe computer programming systems designed to allow interaction with other pieces of software. Done properly, APIs open up services to outside coders who aren't involved in the development of the original software.
+The term was coined long before the web existed to describe computer programming systems designed to allow interaction with other pieces of software. Done properly, APIs open up services to outside coders who aren't involved in developing the original software.
 
-In the Internet age, APIs are commonly used to allow computer programmers to access services published on the web. For instance, the [Twitter API](https://developer.twitter.com/en/docs) allows the [@earthquakebot](https://twitter.com/earthquakebot) account to automatically post the latest quakes. The [Google Maps API](https://developers.google.com/maps) allowed Adrian Holovaty publish interactive maps of government data on [chicagocrime.org](http://www.holovaty.com/writing/chicagocrime.org-tribute/).
+In the Internet age, APIs are commonly used to allow computer programmers to access services published on the web. For instance, the [Twitter API](https://developer.twitter.com/en/docs) allows the [@earthquakebot](https://twitter.com/earthquakebot) account to post the latest quakes automatically. The [Google Maps API](https://developers.google.com/maps) allowed Adrian Holovaty to publish interactive maps of government data on [chicagocrime.org](http://www.holovaty.com/writing/chicagocrime.org-tribute/).
 
 In the same way, the [Datawrapper API](https://developer.datawrapper.de/docs/getting-started) allows Reuters to automatically draft bar and line charts plotting equity indexes, commodity prices and macroeconomic indicators. This class will teach you the fundamentals of how you could use it to automate charts of your own.
 
