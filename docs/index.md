@@ -398,7 +398,7 @@ Southwest    21822
 Northern     13087
 ```
 
-That means could use Python and our datawrapper library create nine different annual arrests charts.
+That means you could use Python and our datawrapper library to create nine different annual arrests charts.
 
 While there are numerous ways to accomplish this task, in this example we'll write a function that takes the name of a district as an argument and returns a chart. We'll then use a `for` loop to call that function for each district.
 
