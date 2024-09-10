@@ -343,6 +343,25 @@ metadata = {
 }
 ```
 
+You can take it a step further and set a color to highlight one specific value in our data. In this example, we can highlight the year with the most arrests setting the `color-by-column` parameter to `True` and using the `color-category` parameter to set a color to the year 2010.
+
+```python
+"color-by-column": True,
+"color-category": {"map": {"2010": "#8e4e0a"}},
+```
+
+This customization would be set inside the metadata dictionary and would look like this.
+
+```python
+metadata = {
+    "visualize": {
+        "base-color": "#bf7836",  # Our accent color
+        "color-by-column": True,
+        "color-category": {"map": {"2010": "#8e4e0a"}},
+    }
+}
+```
+
 That can then be passed to the `update_chart` method of the `dw` object, which will apply the changes to the chart.
 
 ```python
