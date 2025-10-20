@@ -129,19 +129,19 @@ If you're not in a Jupyter notebook, you can install `datawrapper` using `pip`, 
 Once the library is installed, you should import it into your notebook.
 
 ```python
-from datawrapper import Datawrapper
+import datawrapper as dw
 ```
 
-The key first step is to authenticate with the Datawrapper API using the token you created earlier. You can do that by creating a new `Datawrapper` object and passing your token to it. We will save that as a variable named `dw`.
+The key first step is to authenticate with the Datawrapper API using the token you created earlier. You should add the token to your environment by adding DATAWRAPPER_ACCESS_TOKEN as an environment variable. In JupyterLab, you can do this by using the magic command `%env` like so:
 
 ```python
-dw = Datawrapper("YOUR ACCESS TOKEN")
+%env DATAWRAPPER_ACCESS_TOKEN=your_token_here
 ```
 
 Verify that your connection is working by having the `dw` object ask the API for information about your account.
 
 ```python
-dw.get_my_account()
+dw.Datawrapper().get_my_account()
 ```
 
 It should return a dictionary with metadata about you, including your email address and role. It will look something like this:
@@ -255,9 +255,8 @@ Connecting to the API and creating your first chart is as simple as passing our 
 That can be done with the following code. While it's not required, we'll save the result as a variable named `chart_config` so that we can reuse what it returns.
 
 ```python
-chart_config = dw.create_chart(
+chart = dw.ColumnChart(
     title="Baltimore Arrests",
-    chart_type="column-chart",
     data=totals_by_year
 )
 ```
@@ -271,27 +270,23 @@ Congratulations! You've created your first chart using the Datawrapper API. Whil
 Back in our notebook, the method returned a dictionary with information about the chart that was created. You can inspect it by running the variable name in a new cell.
 
 ```python
-chart_config
+chart
 ```
 
-It should spit out a dictionary with a ton of metadata about your chart. The most important bit is the "id" key, which contains the unique identifier for your chart. We can use that to make future edits to the chart. Let's pull it out into a variable named `chart_id`.
+It should spit out a dictionary with a ton of metadata about your chart.
+
+Sending your chart live is as simple as running the `publish` method on the chart object.
 
 ```python
-chart_id = chart_config["id"]
+chart.publish()
 ```
 
-Sending your chart live is as simple as passing the `chart_id` to the `publish_chart` method of the `dw` object, like so:
-
-```python
-dw.publish_chart(chart_id)
-```
-
-That will make the chart available to the public and return another dictionary of data, which you can ignore.
+That will make the chart available to the public.
 
 You can see your handiwork in the notebook by asking the `dw` object to display the chart's embed using the `display_chart` method.
 
 ```python
-dw.display_chart(chart_id)
+chart.display()
 ```
 
 <iframe title="Baltimore Arrests" aria-label="Column Chart" id="datawrapper-chart-JBvvU" src="https://datawrapper.dwcdn.net/JBvvU/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
@@ -302,24 +297,22 @@ dw.display_chart(chart_id)
 A common practice in journalism is to provide a citation for the soruce data behind a chart. This is can be done manually in the "Describe" tab of the Datawrapper interface. You can also do it using the `update_description` method of the `dw` object. Here we'll set the source name, source URL and byline.
 
 ```python
-dw.update_description(
-    chart_id,
-    source_name="OpenBaltimore",
-    source_url="https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
-    byline="First Automated Chart",
-)
+chart.source_name = "OpenBaltimore"
+chart.source_url = "https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about"
+chart.byline = "First Automated Chart"
+chart.update()
 ```
 
 Run that cell and republish your chart.
 
 ```python
-dw.publish_chart(chart_id)
+chart.publish()
 ```
 
 You can see the changes by, again, asking the `dw` object to display the chart's embed. Take a look at the bottom line of the chart to see the citation.
 
 ```python
-dw.display_chart(chart_id)
+chart.display()
 ```
 
 <iframe title="Baltimore Arrests" aria-label="Column Chart" id="datawrapper-chart-gX01J" src="https://datawrapper.dwcdn.net/gX01J/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
@@ -333,32 +326,28 @@ You can do much more than that by using Python to configure the chart's metadata
 You can find a list of many of the available options in the [Datawrapper documentation](https://developer.datawrapper.de/docs/chart-properties).
 ```
 
-A simple example is to change the color of the bars. That can be done by creating a dictionary of configuration options to the `metadata` parameter of the `update_chart` method. It must conform precisely with the format expected by Datawrapper's API.  Here we'll set the "base-color" to a nice shade of orange.
+A simple example is to change the color of the bars. That can be done by setting the `base_color` attribute of the `chart` object.
 
 ```python
-metadata = {
-    "visualize": {
-        "base-color": "#bf7836"  # Our accent color
-    }
-}
+chart.base_color = "#bf7836"  # Our accent color
 ```
 
-That can then be passed to the `update_chart` method of the `dw` object, which will apply the changes to the chart.
+Now you just run update again.
 
 ```python
-dw.update_chart(chart_id, metadata=metadata)
+chart.update()
 ```
 
 Then if you publish the chart...
 
 ```python
-dw.publish_chart(chart_id)
+chart.publish()
 ```
 
 ...and display it again...
 
 ```python
-dw.display_chart(chart_id)
+chart.display()
 ```
 
 ...you should see the bars have changed color.
@@ -421,35 +410,25 @@ def create_chart(district: str) -> str:
     district_by_year = district_df.year.value_counts().sort_index().reset_index()
 
     # Create the chart with Datawrapper
-    chart_config = dw.create_chart(
+    chart = dw.ColumnChart(
         # Use the district name in the title
         title=f"Arrests in Baltimore's {district} District",
-        # Use the column chart type
-        chart_type="column-chart",
         # Pass in the filtered data
         data=district_by_year,
-        metadata={
-            # Set the bar colors
-            "visualize": {
-                "base-color": "#bf7836"  # IRE's accent color
-            },
-            # Set the chart description
-            "describe": {
-                "source-name": "OpenBaltimore",
-                "source-url": "https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
-                "byline": "First Automated Chart"
-            }
-        }
+        base_color="#bf7836",
+        source_name="OpenBaltimore",
+        source_url="https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
+        byline="First Automated Chart",
     )
-
-    # Pull out the chart's unique identifier
-    chart_id = chart_config["id"]
+    
+    # Create the chart
+    chart.create()
 
     # Publish the chart
-    dw.publish_chart(chart_id)
+    chart.publish()
 
     # Return the chart's embed code
-    return dw.display_chart(chart_id)
+    return chart.display()
 ```
 
 Now all it takes to create a chart is to call the function and pass in the name of a district. For instance, to create a chart for the Western District, you would run the following code:
@@ -553,40 +532,33 @@ top_charges_df = (
 Pass that into the `create_chart` method of the `dw` object, just as we did before. This time we'll use the "d3-bars" chart type, which is a nice way to visualize a ranked list of items.
 
 ```python
-chart_config = dw.create_chart(
+chart = dw.BarChart(
     title=f"Top 10 arrest charges in Baltimore last week",
-    chart_type="d3-bars",  # Here's that chart type
     data=top_charges_df,  # Note that we're using the top charges DataFrame
-    metadata={
-        "visualize": {
-            "base-color": "#113421",  # Let's do a different color, for fun.
-            "thick": True,  # Make the bars thick, another Datawrapper config option
-        },
-        "describe": {
-            "source-name": "OpenBaltimore",
-            "source-url": "https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
-            "byline": "Ben Welsh"
-        }
-    }
+    base_color="#113421",
+    thick=True,
+    source_name="OpenBaltimore",
+    source_url="https://data.baltimorecity.gov/datasets/baltimore::bpd-arrests/about",
+    byline="Ben Welsh",
 )
 ```
 
-Just as we did with our first chart, we'll grab the identifier.
+Just as we did with our first chart ...
 
 ```python
-chart_id = chart_config["id"]
+chart.create()
 ```
 
-Publish it.
+... we can publish it ...
 
 ```python
-dw.publish_chart(chart_id)
+chart.publish()
 ```
 
-And display it.
+... and display it.
 
 ```python
-dw.display_chart(chart_id)
+chart.display()
 ```
 
 <iframe title="Top 10 arrest charges in Baltimore last week" aria-label="Bar Chart" id="datawrapper-chart-viAN9" src="https://datawrapper.dwcdn.net/viAN9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
@@ -598,4 +570,4 @@ There are numerous ways you could run such a script according to a schedule, a t
 
 ## About this class
 
-This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Sergio Sanchez Zavala](https://github.com/chekos) for [a training session](https://schedules.ire.org/nicar-2024/index.html#2110) at the National Institute for Computer-Assisted Reporting’s 2024 conference in Baltimore. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered text generator. The materials are available as free and open source on [GitHub](https://github.com/palewire/first-automated-chart).
+This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Sergio Sanchez Zavala](https://github.com/chekos) for [a training session](https://schedules.ire.org/nicar-2024/index.html#2110) at the National Institute for Computer-Assisted Reporting’s 2024 conference in Baltimore. It was updated in October 2025 to reflect version 2.0 of the `datawrapper` library. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered text generator. The materials are available as free and open source on [GitHub](https://github.com/palewire/first-automated-chart).
