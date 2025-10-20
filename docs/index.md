@@ -126,16 +126,16 @@ The `datawrapper` library, created by one of the authors of this class, is a too
 If you're not in a Jupyter notebook, you can install `datawrapper` using `pip`, `pipenv` or another Python packaging tool.
 ```
 
-Once the library is installed, you should import it into your notebook.
-
-```python
-import datawrapper as dw
-```
-
 The key first step is to authenticate with the Datawrapper API using the token you created earlier. You should add the token to your environment by adding DATAWRAPPER_ACCESS_TOKEN as an environment variable. In JupyterLab, you can do this by using the magic command `%env` like so:
 
 ```python
 %env DATAWRAPPER_ACCESS_TOKEN=your_token_here
+```
+
+Once the library is installed and the token is available, you should import the code into your notebook.
+
+```python
+import datawrapper as dw
 ```
 
 Verify that your connection is working by having the `dw` object ask the API for information about your account.
@@ -252,7 +252,7 @@ In this case, the data seems well suit for a column chart, with one vertical bar
 
 Connecting to the API and creating your first chart is as simple as passing our three required inputs — a headline, a chart type and a DataFrame — into the `create_chart` method of the `dw` object.
 
-That can be done with the following code. While it's not required, we'll save the result as a variable named `chart_config` so that we can reuse what it returns.
+That can be done with the following code. While it's not required, we'll save the result as a variable named `chart` so that we can reuse what it returns.
 
 ```python
 chart = dw.ColumnChart(
@@ -261,19 +261,17 @@ chart = dw.ColumnChart(
 )
 ```
 
+Then you can create the chart by running the `create` method on the `chart` object.
+
+```python
+chart.create()
+```
+
 If the cell runs without error, a new chart is born. You can see it by visiting [https://app.datawrapper.de/](https://https://app.datawrapper.de/) in your browser.
 
 ![A new chart on the datawrapper dashboard](_static/first-chart.png)
 
-Congratulations! You've created your first chart using the Datawrapper API. While it's ready for review in the dashboard, it won't be published for others to see. Let's learn how to do that next.
-
-Back in our notebook, the method returned a dictionary with information about the chart that was created. You can inspect it by running the variable name in a new cell.
-
-```python
-chart
-```
-
-It should spit out a dictionary with a ton of metadata about your chart.
+Congratulations! You've created your first chart using the Datawrapper API. While it's ready for review in the dashboard, it won't be published for others to see.
 
 Sending your chart live is as simple as running the `publish` method on the chart object.
 
@@ -283,7 +281,7 @@ chart.publish()
 
 That will make the chart available to the public.
 
-You can see your handiwork in the notebook by asking the `dw` object to display the chart's embed using the `display_chart` method.
+You can see your handiwork in the notebook by asking the object to show the chart's embed using the `display` method.
 
 ```python
 chart.display()
