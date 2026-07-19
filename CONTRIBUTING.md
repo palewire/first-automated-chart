@@ -14,17 +14,17 @@ Change into the project directory:
 cd first-automated-chart
 ```
 
-Install the dependencies using pipenv:
+Install the dependencies using uv:
 
 ```bash
-pipenv install
+uv sync --all-groups
 ```
 
 To start a test server the previews the site, use the following commands
 
 ```bash
 cd docs
-pipenv run make livehtml
+uv run make livehtml
 ```
 
 Once it starts, visit [localhost:8000](http://localhost:8000) in your browser. Edits made in the `docs/` folder will appear soon after being pushed to GitHub.
