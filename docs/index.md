@@ -26,7 +26,7 @@ If you've brave enough to give the Python programming language a try, you are qu
 
 ## What is an API?
 
-Before we start, lets answer the obvious questions. What the heck is an API? And why do programmers talk about them so much?
+Before we start, let’s answer the obvious questions. What the heck is an API? And why do programmers talk about them so much?
 
 Officially, [API](https://en.wikipedia.org/wiki/API) is an acronym that stands for application programming interface. But that's pretty jargony too and probably doesn't clear things up much.
 
@@ -202,7 +202,7 @@ You can see that the dataset features one row for each arrest, with columns for 
 
 ## Create one chart
 
-With these materials, any number of charts could be created. As a simple start, lets consider a chart that shows the number of arrests in Baltimore by year. Lets look into the idea by creating a new column in the `df` object that contains the year of each arrest.
+With these materials, any number of charts could be created. As a simple start, let’s consider a chart that shows the number of arrests in Baltimore by year. Let’s look into the idea by creating a new column in the `df` object that contains the year of each arrest.
 
 ```python
 df['year'] = df.ArrestDateTime.dt.year
@@ -248,7 +248,7 @@ That should output a tidy table that's ready for the API. The only other things 
 
 [![](_static/datawrapper-chart-types.png)](https://developer.datawrapper.de/docs/chart-types)
 
-In this case, the data seems well suit for a column chart, with one vertical bar for each year's arrest total. The documentation tells us that the code for that is "column-chart."
+In this case, the data seems well suited for a column chart, with one vertical bar for each year's arrest total. The documentation tells us that the code for that is "column-chart."
 
 Connecting to the API and creating your first chart is as simple as passing our three required inputs — a headline, a chart type and a DataFrame — into the `create_chart` method of the `dw` object.
 
@@ -292,7 +292,7 @@ chart.display()
 
 ### Set the chart description
 
-A common practice in journalism is to provide a citation for the soruce data behind a chart. This is can be done manually in the "Describe" tab of the Datawrapper interface. You can also do it using the `update_description` method of the `dw` object. Here we'll set the source name, source URL and byline.
+A common practice in journalism is to provide a citation for the source data behind a chart. This can be done manually in the "Describe" tab of the Datawrapper interface. You can also do it using the `update_description` method of the `dw` object. Here we'll set the source name, source URL and byline.
 
 ```python
 chart.source_name = "OpenBaltimore"
@@ -564,7 +564,7 @@ chart.display()
 
 Boom. We're created a little Python routine that, provided with an updated dataset, could be rerun at any time to create a fresh chart.
 
-There are numerous ways you could run such a script according to a schedule, a task beyond the scope of this course. One popular tool is [GitHub Actions](https://docs.github.com/en/actions), a free service linked to GitHub respositories. You can learn how journalists use it to automate data work in our complimentary class [“First GitHub Scraper."](https://palewi.re/docs/first-github-scraper/)
+There are numerous ways you could run such a script according to a schedule, a task beyond the scope of this course. One popular tool is [GitHub Actions](https://docs.github.com/en/actions), a free service linked to GitHub repositories. You can learn how journalists use it to automate data work in our complimentary class [“First GitHub Scraper."](https://palewi.re/docs/first-github-scraper/)
 
 ## About this class
 
